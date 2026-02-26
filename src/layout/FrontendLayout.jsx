@@ -1,4 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
+import logo from "@/assets/images/logo.jpg";
+import cornerS from "@/assets/images/corner-s.png";
 
 function FrontendLayout() {
   return (
@@ -8,11 +10,7 @@ function FrontendLayout() {
           {/* LOGO */}
           <div className="order-0 mx-lg-auto">
             <Link className="navbar-brand" to="/">
-              <img
-                className="logo"
-                src="../assets/images/logo.jpg"
-                alt="TenTen-Logo"
-              />
+              <img className="logo" src={logo} alt="TenTen-Logo" />
             </Link>
           </div>
           {/* 購物車 + 漢堡選單 (行動裝置) */}
@@ -160,7 +158,7 @@ function FrontendLayout() {
                         close
                       </span>
                       <img
-                        src="../assets/images/corner-S.png"
+                        src={cornerS}
                         alt="corner"
                         className="position-absolute start-0"
                         style={{
@@ -170,7 +168,7 @@ function FrontendLayout() {
 
                       <div>
                         <img
-                          src="../assets/images/corner-S.png"
+                          src={cornerS}
                           alt="corner"
                           className="position-absolute"
                           style={{ transform: "rotate(-90deg)" }}
@@ -273,7 +271,7 @@ function FrontendLayout() {
         <div className="container border-bottom border-primary-40 d-lg-flex justify-content-lg-between align-items-lg-center">
           <div className="mb-10 d-lg-flex flex-lg-row justify-content-lg-center align-items-lg-center">
             <img
-              src="../assets/images/logo.jpg"
+              src={logo}
               alt="TenTen-Logo"
               className="mb-4 mb-lg-0 me-lg-6"
             />

@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import login1 from "@/assets/images/login-1.jpg";
+import login7 from "@/assets/images/login-7.png";
+import banner from "@/assets/images/banner.jpg";
 
 const Join = () => {
   return (
@@ -13,7 +16,7 @@ const Join = () => {
                   {/* 照片 1 */}
                   <div className="swiper-slide join-card border-0">
                     <img
-                      src="/assets/images/login-1.jpg"
+                      src={login1}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
@@ -21,7 +24,7 @@ const Join = () => {
                   {/* 照片 2 */}
                   <div className="swiper-slide join-card border-0">
                     <img
-                      src="../assets/images/login-7.png"
+                      src={login7}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
@@ -29,7 +32,7 @@ const Join = () => {
                   {/* 照片 3 */}
                   <div className="swiper-slide join-card border-0">
                     <img
-                      src="../assets/images/banner.jpg"
+                      src={banner}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
@@ -233,7 +236,7 @@ const Join = () => {
                   <p className="text-neutral-100 fs-7 mb-10">
                     建立帳號即表示您同意我們的
                     <a
-                      href="/pages/return.html"
+                      href="../../pages/return.html"
                       className="fs-lg-9 fs-7 link"
                       id="returnLink"
                       target="_blank"
@@ -242,7 +245,7 @@ const Join = () => {
                     </a>
                     及
                     <a
-                      href="/pages/privacy.html"
+                      href="../../pages/privacy.html"
                       className="fs-lg-9 fs-7 link"
                       id="privacyLink"
                       target="_blank"

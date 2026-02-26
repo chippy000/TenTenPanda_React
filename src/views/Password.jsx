@@ -1,30 +1,36 @@
+import graphic1 from "@/assets/images/graphic-1.png";
+import graphic2 from "@/assets/images/graphic-2.png";
+import graphic3 from "@/assets/images/graphic-3.svg";
+import graphic4 from "@/assets/images/graphic-4.svg";
+import graphic5 from "@/assets/images/graphic-5.svg";
+
 const Password = () => {
   return (
     <>
       <main className="login-bg border-top border-bottom border-lg-0 position-relative">
         {/* 背景裝飾圖片 */}
         <img
-          src="../assets/images/graphic-1.png"
+          src={graphic1}
           alt=""
           className="password-donut-1 position-absolute d-lg-flex d-none"
         />
         <img
-          src="../assets/images/graphic-2.png"
+          src={graphic2}
           alt=""
           className="password-donut-2 position-absolute d-lg-flex d-none"
         />
         <img
-          src="../assets/images/graphic-3.svg"
+          src={graphic3}
           alt=""
           className="password-donut-3 position-absolute d-lg-flex d-none"
         />
         <img
-          src="../assets/images/graphic-4.svg"
+          src={graphic4}
           alt=""
           className="password-donut-4 position-absolute d-lg-flex d-none"
         />
         <img
-          src="../assets/images/graphic-5.svg"
+          src={graphic5}
           alt=""
           className="password-donut-5 position-absolute d-lg-flex d-none"
         />

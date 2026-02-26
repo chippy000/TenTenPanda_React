@@ -1,3 +1,29 @@
+import banner from "@/assets/images/banner.jpg";
+import bannerTitle from "@/assets/images/banner-seasonal-title.svg";
+import graphic1 from "@/assets/images/graphic-1.png";
+import graphic2 from "@/assets/images/graphic-2.png";
+import donutIcon from "@/assets/images/section-list-donut.svg";
+import recommendBigTitle from "@/assets/images/recommend-bigtitle.png";
+import adNews1 from "@/assets/images/ad-news-1.png";
+import adNews2 from "@/assets/images/ad-news-2.jpg";
+import adNews3 from "@/assets/images/ad-news-3.png";
+import adNews4 from "@/assets/images/ad-news-4.png";
+import recommendLeft from "@/assets/images/recommend-left.svg";
+import recommendRight from "@/assets/images/recommend-right.svg";
+import starberryImage from "@/assets/images/星塵草莓2-光暈.png";
+import snowberryImage from "@/assets/images/白雪綿霜莓2-光暈.png";
+import berryCocoImage from "@/assets/images/莓果可可2-光暈.png";
+import wineberryImage from "@/assets/images/熱紅酒莓果2-光暈.png"
+import snowberryMontImage from "@/assets/images/雪莓蒙布郎2-光暈.png";
+import frostberryImage from "@/assets/images/莓果夾心2-光暈.png";
+import classicImage from "@/assets/images/經典甜甜.png";
+import berryImage from "@/assets/images/莓果甜甜.png";
+import sesameImage from "@/assets/images/芝麻甜甜.png";
+import matchaImage from "@/assets/images/抹茶甜甜.png";
+import creamLemonImage from "@/assets/images/生乳檸檬甜甜.png";
+import caramelCocoaImage from "@/assets/images/焦糖可可甜甜.png";
+import sectionListDonutImage from "@/assets/images/section-list-donut.svg";
+
 const Home = () => {
   return (
     <>
@@ -6,14 +32,14 @@ const Home = () => {
         <div className="container-fluid py-lg-8 pt-3 pb-8 position-relative">
           <div className="banner-img mx-auto position-relative">
             <img
-              src="../assets/images/banner.jpg"
+              src={banner}
               alt=""
               className="banner-boder-radius-lg w-100 h-100 object-fit-cover"
             />
             {/* 雪夜莓語-白底 */}
             <div className="bg-white p-lg-4 p-2 banner-seasonal-title position-absolute d-flex flex-column gap-lg-6 gap-2 justify-content-lg-end">
               <img
-                src="../assets/images/banner-seasonal-title.svg"
+                src={bannerTitle}
                 alt=""
                 className="banner-seasonal-title-img"
               />
@@ -36,13 +62,13 @@ const Home = () => {
             className="position-absolute banner-deco"
             style={{ top: "10%", left: "1%" }}
           >
-            <img src="../assets/images/graphic-1.png" alt="" />
+            <img src={graphic1} alt="" />
           </div>
           <div
             className="position-absolute banner-deco"
             style={{ bottom: "30%", right: "2%" }}
           >
-            <img src="../assets/images/graphic-2.png" alt="" />
+            <img src={graphic2} alt="" />
           </div>
         </div>
       </section>
@@ -50,11 +76,7 @@ const Home = () => {
       {/* section 2 甜甜優惠 */}
       <section className="pt-14 pb-4 py-lg-24">
         <div className="d-flex flex-column align-items-center gap-1 gap-lg-1 pb-6 pb-lg-14">
-          <img
-            src="../assets/images/section-list-donut.svg"
-            alt=""
-            className="section-list-donut"
-          />
+          <img src={donutIcon} alt="" className="section-list-donut" />
           <h2 className="fs-4 fs-lg-2 text-neutral-100">
             <span className="text-primary-40 me-1">甜甜</span>優惠
           </h2>
@@ -82,7 +104,7 @@ const Home = () => {
                   <div className="d-flex gap-4 gap-lg-12 flex-column align-items-start justify-content-center h-100">
                     <div>
                       <img
-                        src="../assets/images/banner-seasonal-title.svg"
+                        src={bannerTitle}
                         alt=""
                         className="sales-ad-title"
                       />
@@ -130,7 +152,7 @@ const Home = () => {
           <div className="d-flex flex-column align-items-center mb-6 mb-lg-14">
             <img
               className="section-list-donut mb-1 mb-lg-2"
-              src="/assets/images/section-list-donut.svg"
+              src={donutIcon}
               alt="section-list-donut"
             />
             <div className="d-flex">
@@ -148,7 +170,7 @@ const Home = () => {
           <div className="recommend-main position-relative container-lg">
             <img
               className="position-absolute recommend-bigtitle"
-              src="/assets/images/recommend-bigtitle.png"
+              src={recommendBigTitle}
               alt=""
             />
             <div className="py-14 pt-lg-18 pb-lg-30">
@@ -170,13 +192,13 @@ const Home = () => {
                       aria-selected="true"
                     >
                       <img
-                        src="/assets/images/recommend-left.svg"
+                        src={recommendLeft}
                         style={{ width: "24px", height: "12px" }}
                         alt="recommend-left"
                       />
                       期間限定
                       <img
-                        src="/assets/images/recommend-right.svg"
+                        src={recommendRight}
                         style={{ width: "24px", height: "12px" }}
                         alt="recommend-right"
                       />
@@ -194,13 +216,13 @@ const Home = () => {
                       aria-selected="false"
                     >
                       <img
-                        src="/assets/images/recommend-left.svg"
+                        src={recommendLeft}
                         style={{ width: "24px", height: "12px" }}
                         alt="recommend-left"
                       />
                       常駐品項
                       <img
-                        src="/assets/images/recommend-right.svg"
+                        src={recommendRight}
                         style={{ width: "24px", height: "12px" }}
                         alt="recommend-right"
                       />
@@ -233,7 +255,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/星塵草莓2-光暈.png"
+                              src={starberryImage}
                               className="img-limited img-fluid h-100"
                               alt="星塵草莓"
                             />
@@ -253,7 +275,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/白雪綿霜莓2-光暈.png"
+                              src={snowberryImage}
                               className="img-limited img-fluid h-100"
                               alt="白雪綿霜莓"
                             />
@@ -273,7 +295,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/莓果可可2-光暈.png"
+                              src={berryCocoImage}
                               className="img-limited img-fluid h-100"
                               alt="莓果可可"
                             />
@@ -293,7 +315,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/雪莓蒙布郎2-光暈.png"
+                              src={snowberryMontImage}
                               className="img-limited img-fluid h-100"
                               alt="雪莓蒙布郎"
                             />
@@ -313,7 +335,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/熱紅酒莓果2-光暈.png"
+                              src={wineberryImage}
                               className="img-limited img-fluid h-100"
                               alt="熱紅酒莓果"
                             />
@@ -333,7 +355,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/莓果夾心2-光暈.png"
+                              src={frostberryImage}
                               className="img-limited img-fluid h-100"
                               alt="莓果夾心"
                             />
@@ -374,7 +396,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/經典甜甜.png"
+                              src={classicImage}
                               className="img-classic img-fluid h-100"
                               alt="經典甜甜"
                             />
@@ -394,7 +416,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/莓果甜甜.png"
+                              src={berryImage}
                               className="img-classic img-fluid h-100"
                               alt="莓果甜甜"
                             />
@@ -414,7 +436,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/芝麻甜甜.png"
+                              src={sesameImage}
                               className="img-classic img-fluid h-100"
                               alt="芝麻甜甜"
                             />
@@ -434,7 +456,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/抹茶甜甜.png"
+                              src={matchaImage}
                               className="img-classic img-fluid h-100"
                               alt="抹茶甜甜"
                             />
@@ -454,7 +476,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/生乳檸檬甜甜.png"
+                              src={creamLemonImage}
                               className="img-classic img-fluid h-100"
                               alt="生乳檸檬甜甜"
                             />
@@ -474,7 +496,7 @@ const Home = () => {
                             className="card bg-transparent border-0 h-100 align-items-center text-center"
                           >
                             <img
-                              src="/assets/images/焦糖可可甜甜.png"
+                              src={caramelCocoaImage}
                               className="img-classic img-fluid h-100"
                               alt="焦糖可可甜甜"
                             />
@@ -523,7 +545,7 @@ const Home = () => {
         {/* 標題 */}
         <div className="d-flex flex-column align-items-center mb-6 mb-lg-14">
           <img
-            src="/assets/images/section-list-donut.svg"
+            src={sectionListDonutImage}
             alt="donut-icon"
             className="section-list-donut mb-1 mb-lg-2"
           />
@@ -630,25 +652,25 @@ const Home = () => {
             <div className="col-lg-6 order-lg-1 d-none d-lg-flex">
               <div className="ratio ratio-4x3 position-relative news-preview">
                 <img
-                  src="/assets/images/ad-news-1.png"
+                  src={adNews1}
                   alt="ad-news-1"
                   className="preview-img"
                   data-key="1"
                 />
                 <img
-                  src="/assets/images/ad-news-2.jpg"
+                  src={adNews2}
                   alt="ad-news-2"
                   className="preview-img ad-news-2"
                   data-key="2"
                 />
                 <img
-                  src="/assets/images/ad-news-3.png"
+                  src={adNews3}
                   alt="ad-news-3"
                   className="preview-img"
                   data-key="3"
                 />
                 <img
-                  src="/assets/images/ad-news-4.png"
+                  src={adNews4}
                   alt="ad-news-4"
                   className="preview-img"
                   data-key="4"
@@ -665,7 +687,7 @@ const Home = () => {
           {/* 標題 */}
           <div className="d-flex flex-column align-items-center mb-6 mb-lg-11">
             <img
-              src="/assets/images/section-list-donut.svg"
+              src={donutIcon}
               alt="donut-icon"
               className="section-list-donut mb-1 mb-lg-2"
             />

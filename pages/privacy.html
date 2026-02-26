@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,16 +26,9 @@
     <title>甜甜熊貓｜TenTen Donut - 甜點專賣</title>
   </head>
   <body>
-    <div id="userHeader" style="visibility: hidden">
-      <%- include('./layout/header-profile'); -%>
-    </div>
-    <div id="guestHeader" style="visibility: hidden">
-      <%- include('./layout/header'); -%>
-    </div>
-
     <!-- React 渲染處-->
     <div id="root"></div>
-    
+
     <main
       class="login-bg border-top border-bottom border-lg-0 position-relative"
     >
@@ -46,14 +39,14 @@
             <nav>
               <ol class="breadcrumb">
                 <li class="bread-item">
-                  <a href="index.html"
-                    ><img src="../assets/images/icon-home.svg" alt=""
-                  /></a>
+                  <a href="index.html">
+                    <img src="/icon-home.svg" alt="" />
+                  </a>
                 </li>
                 <li class="d-flex align-items-center">
-                  <span class="material-symbols-outlined text-neutral-60 mx-2"
-                    >keyboard_double_arrow_right</span
-                  >
+                  <span class="material-symbols-outlined text-neutral-60 mx-2">
+                    keyboard_double_arrow_right
+                  </span>
                   <a href="#"></a>
                 </li>
                 <li
@@ -200,8 +193,6 @@
         </div>
       </div>
     </main>
-
-    <%- include('./layout/footer'); -%>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="../main.js"></script>

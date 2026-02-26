@@ -23,34 +23,20 @@ function moveOutputPlugin() {
   };
 }
 
+// 在 ESM 環境下手動定義 __dirname
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig(({ command }) => ({
   // base 的寫法:
   // base: '/Repository 的名稱/' -> 只在 build 時使用這個 base，dev 時還是用 '/'
   base: command === "build" ? "/TenTenPanda_React/" : "/",
   plugins: [
     react(), // ← 只加這行
-    liveReload(["./layout/**/*.ejs", "./pages/**/*.ejs", "./pages/**/*.html"]),
-    ViteEjsPlugin(),
-    moveOutputPlugin(),
   ],
-  server: {
-    // 啟動 server 時預設開啟的頁面
-    open: "/pages/index.html",
-  },
-  build: {
-    rollupOptions: {
-      input: Object.fromEntries(
-        glob
-          .sync("pages/**/*.html")
-          .map((file) => [
-            path.relative(
-              "pages",
-              file.slice(0, file.length - path.extname(file).length),
-            ),
-            fileURLToPath(new URL(file, import.meta.url)),
-          ]),
-      ),
+  resolve: {
+    alias: {
+      // 設定 @ 指向 src 資料夾
+      "@": path.resolve(__dirname, "./src"),
     },
-    outDir: "dist",
   },
 }));

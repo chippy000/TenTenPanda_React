@@ -22,25 +22,24 @@
 @import "./base/base";
 
 // layout
-@import "./layout/footer";
-@import "./layout/header";
-@import "./layout/header-profile";
+// @import "../layout-ejs/footer";
+// @import "../layout-ejs/header";
+// @import "../layout-ejs/header-profile.ejs";
 
 //page
-@import "./pages/index";
-@import "./pages/productList";
-@import "./pages/item_details";
-@import "./pages/order";
-@import "./pages/cart";
-@import "./pages/news";
-@import "./pages/login";
-@import "./pages/join";
-@import "./pages/password";
-
-@import "./pages/item_details";
-@import "./pages/privacy";
-@import "./pages/return";
-@import "./pages/story";
-@import "./pages/productList";
-@import "./pages/myOrders";
-@import "./pages/myInfo";
+@import "./pages-scss/index";
+@import "./pages-scss/productList";
+@import "./pages-scss/item_details";
+@import "./pages-scss/order";
+@import "./pages-scss/cart";
+@import "./pages-scss/news";
+@import "./pages-scss/login";
+@import "./pages-scss/join";
+@import "./pages-scss/password";
+@import "./pages-scss/item_details";
+@import "./pages-scss/privacy";
+@import "./pages-scss/return";
+@import "./pages-scss/story";
+@import "./pages-scss/productList";
+@import "./pages-scss/myOrders";
+@import "./pages-scss/myInfo";

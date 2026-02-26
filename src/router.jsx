@@ -1,12 +1,12 @@
 import { createHashRouter } from "react-router-dom";
-import FrontendLayout from "../layout/FrontendLayout";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Story from "../pages/Story";
-import Join from "../pages/Join";
-import Password from "../pages/Password";
-import Return from "../pages/Return";
-import Privacy from "../pages/Privacy";
+import FrontendLayout from "./layout/FrontendLayout";
+import Home from "./views/Home";
+import Login from "./views/Login";
+import Story from "./views/Story";
+import Join from "./views/Join";
+import Password from "./views/Password";
+import Return from "./views/Return";
+import Privacy from "./views/Privacy";
 
 const router = createHashRouter([
   {

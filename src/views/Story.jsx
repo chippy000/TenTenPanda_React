@@ -1,10 +1,23 @@
+import curveLine from "@/assets/images/curve-line.svg";
+import login4 from "@/assets/images/login-4.png";
+import graphic3 from "@/assets/images/graphic-3.svg";
+import graphic4 from "@/assets/images/graphic-4.svg";
+import graphic5 from "@/assets/images/graphic-5.svg";
+import login1 from "@/assets/images/login-1.jpg";
+import login3 from "@/assets/images/login-3.png";
+import login5 from "@/assets/images/login-5.png";
+import login10 from "@/assets/images/login-10.png";
+import login8 from "@/assets/images/login-8.png";
+import login11 from "@/assets/images/login-11.png";
+import login7 from "@/assets/images/login-7.png";
+
 const Story = () => {
   return (
     <>
       <main className="position-relative overflow-hidden">
         {/* 背景素材 */}
         <img
-          src="../assets/images/curve-line.svg"
+          src={curveLine}
           alt=""
           className="position-absolute z-n1 curve-line"
         />
@@ -28,7 +41,7 @@ const Story = () => {
             <div className="w-100">
               <div className="img-col br-40 br-lg-56 overflow-hidden">
                 <img
-                  src="../assets/images/login-4.png"
+                  src={login4}
                   alt=""
                   className="story-img object-fit-cover w-100 h-100"
                 />
@@ -41,7 +54,7 @@ const Story = () => {
         <section className="container d-lg-flex justify-content-center py-lg-16 py-10 text-neutral-100 fw-bold fs-4 fs-lg-2 position-relative">
           {/* 背景素材 */}
           <img
-            src="../assets/images/graphic-3.svg"
+            src={graphic3}
             alt=""
             className="graphic-3 position-absolute z-n1 d-none d-lg-block"
           />
@@ -55,7 +68,7 @@ const Story = () => {
         <section className="container py-8 px-lg-0 d-lg-flex justify-content-between align-items-center py-lg-8 position-relative">
           {/* 背景素材 */}
           <img
-            src="../assets/images/graphic-4.svg"
+            src={graphic4}
             alt=""
             className="graphic-4 position-absolute z-n1 d-lg-none d-block"
           />
@@ -84,7 +97,7 @@ const Story = () => {
             <div className="w-50 pe-3 pt-18 pt-lg-30">
               <div className="team-panda br-40 br-lg-56 overflow-hidden">
                 <img
-                  src="../assets/images/login-1.jpg"
+                  src={login1}
                   alt=""
                   className="object-fit-cover w-100 h-100"
                 />
@@ -94,7 +107,7 @@ const Story = () => {
             <div className="w-50 ps-3 pt-6 pt-lg-8">
               <div className="single-panda br-40 br-lg-56 overflow-hidden">
                 <img
-                  src="../assets/images/login-3.png"
+                  src={login3}
                   alt=""
                   className="object-fit-cover w-100 h-100"
                 />
@@ -107,7 +120,7 @@ const Story = () => {
         <section className="py-8 pt-lg-8 px-lg-0 d-lg-flex flex-row-reverse position-relative">
           {/* 背景素材 */}
           <img
-            src="../assets/images/graphic-4.svg"
+            src={graphic4}
             alt=""
             className="s4-graphic-4 position-absolute z-n1 d-lg-block d-none"
           />
@@ -137,7 +150,7 @@ const Story = () => {
           <div className="s4-img px-3 ps-lg-0 w-100 me-lg-6 pb-lg-30">
             <div className="s4-img-col br-40 br-lg-56 br-tl-lg-0 br-bl-lg-0 overflow-hidden">
               <img
-                src="../assets/images/login-5.png"
+                src={login5}
                 alt=""
                 className="object-fit-cover w-100 h-100"
               />
@@ -149,7 +162,7 @@ const Story = () => {
         <section className="container py-lg-18 px-lg-0 pt-16 mb-lg-30 pb-30 position-relative">
           {/* 背景素材 */}
           <img
-            src="../assets/images/graphic-5.svg"
+            src={graphic5}
             alt=""
             className="graphic-5 position-absolute z-n1"
           />
@@ -179,28 +192,28 @@ const Story = () => {
           <div className="s6-imgs w-100 d-flex">
             <div className="col-3">
               <img
-                src="/assets/images/login-10.png"
+                src={login10}
                 alt=""
                 className="object-fit-cover w-100 h-100"
               />
             </div>
             <div className="col-3">
               <img
-                src="/assets/images/login-8.png"
+                src={login8}
                 alt=""
                 className="object-fit-cover w-100 h-100"
               />
             </div>
             <div className="col-3">
               <img
-                src="/assets/images/login-11.png"
+                src={login11}
                 alt=""
                 className="object-fit-cover w-100 h-100"
               />
             </div>
             <div className="col-3">
               <img
-                src="/assets/images/login-7.png"
+                src={login7}
                 alt=""
                 className="object-fit-cover w-100 h-100"
               />

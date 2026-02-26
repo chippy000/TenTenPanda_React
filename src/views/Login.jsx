@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import login3 from "@/assets/images/login-3.png";
+import login4 from "@/assets/images/login-4.png";
+import login2 from "@/assets/images/login-2.jpg";
 
 const Login = () => {
   return (
@@ -13,7 +16,7 @@ const Login = () => {
                   {/* 照片 1 */}
                   <div className="swiper-slide login-card border-0">
                     <img
-                      src="../assets/images/login-3.png"
+                      src={login3}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
@@ -21,7 +24,7 @@ const Login = () => {
                   {/* 照片 2 */}
                   <div className="swiper-slide login-card border-0">
                     <img
-                      src="../assets/images/login-4.png"
+                      src={login4}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
@@ -29,7 +32,7 @@ const Login = () => {
                   {/* 照片 3 */}
                   <div className="swiper-slide login-card border-0">
                     <img
-                      src="../assets/images/login-2.jpg"
+                      src={login2}
                       alt=""
                       className="login-img h-100 w-100 object-fit-cover"
                     />
