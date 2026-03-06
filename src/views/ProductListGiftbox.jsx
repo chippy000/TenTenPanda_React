@@ -76,7 +76,7 @@ const ProductListGiftbox = () => {
             <div className="col-12 col-lg-9">
               <div className="row">
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="giftbox_Six">
+                  <div className="mb-lg-8 product position-relative" data-id="giftbox_Six">
                       <div className="img-box p-25">
                         <img
                           src={經典甜甜禮盒6入去背}
@@ -123,7 +123,7 @@ const ProductListGiftbox = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="comp_giftbox_Six">
+                  <div className="mb-lg-8 product position-relative" data-id="comp_giftbox_Six">
                       <div className="img-box p-25">
                         <img
                           src={綜合甜甜禮盒6入去背}
@@ -170,7 +170,7 @@ const ProductListGiftbox = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="giftbox_twelve">
+                  <div className="mb-lg-8 product position-relative" data-id="giftbox_twelve">
                       <div className="img-box p-25">
                         <img
                           src={經典甜甜禮盒12入去背}
@@ -218,7 +218,7 @@ const ProductListGiftbox = () => {
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
                   <div
-                    className="mb-lg-8 product"
+                    className="mb-lg-8 product position-relative"
                     data-id="Comp_giftbox_twelve"
                   >
                       <div className="img-box p-25">

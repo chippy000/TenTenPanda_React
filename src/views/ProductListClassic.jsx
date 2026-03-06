@@ -77,7 +77,7 @@ const ProductListClassic = () => {
             <div className="col-12 col-lg-9">
               <div className="row">
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="classic">
+                  <div className="mb-lg-8 product position-relative" data-id="classic">
                       <div className="img-box">
                         <img
                           src={經典甜甜}
@@ -124,7 +124,7 @@ const ProductListClassic = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="berry">
+                  <div className="mb-lg-8 product position-relative" data-id="berry">
                       <div className="img-box">
                         <img
                           src={莓果甜甜}
@@ -167,16 +167,19 @@ const ProductListClassic = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="sesame">
-                    <Link
-                      to="/itemDetails-Sesame"
-                      className="position-relative d-inline-block"
-                    >
+                  <div className="mb-lg-8 product position-relative" data-id="sesame">
                       <div className="img-box">
                         <img
                           src={芝麻甜甜}
                           alt="芝麻甜甜"
                           className="img-fluid"
+                          onClick={() => navigate("/itemDetails-Sesame")}
+                          onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            navigate("itemDetails-Sesame");
+                          }
+                        }}
+                        style={{ cursor: "pointer" }}
                         />
                       </div>
                       {/* 加入收藏 */}
@@ -189,7 +192,6 @@ const ProductListClassic = () => {
                         <i className="bi bi-heart empty"></i>
                         <i className="bi bi-heart-fill full"></i>
                       </button>
-                    </Link>
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
                         <h2 className="fs-6 mb-2">芝麻甜甜</h2>
@@ -208,7 +210,7 @@ const ProductListClassic = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="matcha">
+                  <div className="mb-lg-8 product position-relative" data-id="matcha">
                       <div className="img-box">
                         <img
                           src={抹茶甜甜}
@@ -251,7 +253,7 @@ const ProductListClassic = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="creamlemon">
+                  <div className="mb-lg-8 product position-relative" data-id="creamlemon">
                       <div className="img-box">
                         <img
                           src={生乳檸檬甜甜}
@@ -294,7 +296,7 @@ const ProductListClassic = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="caramelcocoa">
+                  <div className="mb-lg-8 product position-relative" data-id="caramelcocoa">
                       <div className="img-box">
                         <img
                           src={焦糖可可甜甜}

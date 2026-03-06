@@ -77,7 +77,7 @@ const ProductListSeasonal = () => {
             <div className="col-12 col-lg-9">
               <div className="row">
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="starberry">
+                  <div className="mb-lg-8 product position-relative" data-id="starberry">
                     <div className="img-box p-18" role="button" tabIndex={0}>
                       <img
                         src={starberryImage}
@@ -120,7 +120,7 @@ const ProductListSeasonal = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="snowberry">
+                  <div className="mb-lg-8 product position-relative" data-id="snowberry">
                     <div className="img-box p-18">
                       <img
                         src={snowberryImage}
@@ -167,7 +167,7 @@ const ProductListSeasonal = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="berrycoco">
+                  <div className="mb-lg-8 product position-relative" data-id="berrycoco">
                     <Link
                       to="/itemDetails-Berrycoco"
                       className="position-relative d-inline-block"
@@ -219,7 +219,7 @@ const ProductListSeasonal = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="SnowberryMont">
+                  <div className="mb-lg-8 product position-relative" data-id="SnowberryMont">
                       <div className="img-box p-18">
                         <img
                           src={snowberryMontImage}
@@ -265,7 +265,7 @@ const ProductListSeasonal = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="wineberry">
+                  <div className="mb-lg-8 product position-relative" data-id="wineberry">
                       <div className="img-box p-18">
                         <img
                           src={wineberryImage}
@@ -313,7 +313,7 @@ const ProductListSeasonal = () => {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6 ps-lg-8 pe-lg-0 mb-8">
-                  <div className="mb-lg-8 product" data-id="frostBerry">
+                  <div className="mb-lg-8 product position-relative" data-id="frostBerry">
                       <div className="img-box p-18">
                         <img
                           src={frostberryImage}
