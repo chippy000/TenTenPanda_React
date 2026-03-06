@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useRef, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonSwiper from "@/components/CommonSwiper";
-import { loginUser } from "@/api/auth";
+import { supabase } from "../../supabaseClient";
 
 import login3 from "@/assets/images/login-3.webp";
 import login4 from "@/assets/images/login-4.webp";
@@ -183,26 +183,43 @@ const Login = () => {
     try {
       setIsSubmitting(true);
 
-      const user = await loginUser({
-        email: data.email.trim(),
-        password: data.password,
-      });
+      const email = data.email.trim();
+      const password = data.password;
+
+      // 使用 supabase 登入（auth.signInWithPassword 不支援 .throwOnError）
+      const { data: loginData, error } = await supabase.auth.signInWithPassword(
+        {
+          email: email,
+          password: password,
+        },
+      );
+      if (error) {
+        throw error;
+      }
 
       // 記住帳號
       if (data.remember) {
-        localStorage.setItem("rememberEmail", user.email);
+        localStorage.setItem("rememberEmail", email);
       } else {
         localStorage.removeItem("rememberEmail");
       }
 
       // 存登入狀態
-      localStorage.setItem("isLogin", "true");
+      // user 可能在 loginData.user，也可能寫在 loginData.session.user
+      const user = loginData.user || loginData.session?.user || null;
       localStorage.setItem("user", JSON.stringify(user));
+
+      console.log("登入成功！歡迎回來");
 
       setShowSuccess(true);
     } catch (error) {
       console.error("登入失敗：", error);
-      alert(error.message || "登入失敗，請稍後再試");
+
+      if (error.message?.includes("Invalid login credentials")) {
+        alert("帳號或密碼錯誤");
+      } else {
+        alert(error.message || "登入失敗，請稍後再試");
+      }
     } finally {
       setIsSubmitting(false);
     }

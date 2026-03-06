@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CommonSwiper from "@/components/CommonSwiper";
-import { registerUser } from "@/api/auth";
+import { supabase } from "../../supabaseClient";
 
 import login1 from "@/assets/images/login-1.webp";
 import login7 from "@/assets/images/login-7.webp";
@@ -143,17 +143,55 @@ const Join = () => {
 
   /**
    * 置中開新視窗
+   * hashPath 會接要開的 hash 路由，例如：
+   * "/return" 或 "/privacy"
    */
-  const openCenteredWindow = (url) => {
+  const openCenteredWindow = (hashPath) => {
+    // 新視窗寬度
     const width = 1280;
+
+    // 新視窗高度
     const height = 720;
 
+    // 計算新視窗要出現在螢幕上的 left 位置
+    // window.screenLeft：目前這個瀏覽器視窗距離螢幕左邊的位置
+    // window.innerWidth：目前瀏覽器視窗本身的寬度
+    // (window.innerWidth - width) / 2：算出要讓新視窗水平置中時，左邊要留多少空間
     const left = window.screenLeft + (window.innerWidth - width) / 2;
+
+    // 計算新視窗要出現在螢幕上的 top 位置
+    // window.screenTop：目前這個瀏覽器視窗距離螢幕上方的位置
+    // window.innerHeight：目前瀏覽器視窗本身的高度
+    // (window.innerHeight - height) / 2：算出要讓新視窗垂直置中時，上方要留多少空間
     const top = window.screenTop + (window.innerHeight - height) / 2;
 
+    // 組出完整網址
+    // 因為你現在使用的是 createHashRouter
+    // 所以真正的路由要放在 # 後面
+    //
+    // 例如目前網站是：
+    // http://localhost:5173/
+    //
+    // hashPath 如果是 "/return"
+    // 最後 fullUrl 會變成：
+    // http://localhost:5173/#/return
+    //
+    // window.location.origin  = 網站主網域，例如 http://localhost:5173
+    // window.location.pathname = 目前路徑，通常開發時是 "/"
+    // #${hashPath} = Hash Router 真正吃的路由部分
+    const fullUrl = `${window.location.origin}${window.location.pathname}#${hashPath}`;
+
+    // 開新視窗
     window.open(
-      url,
-      "policyWindow",
+      fullUrl, // 要開啟的完整網址
+      "policyWindow", // 視窗名稱，相同名稱時可能會重用同一個視窗
+      // 第三個參數是新視窗設定
+      // width：寬度
+      // height：高度
+      // top：距離螢幕上方的位置
+      // left：距離螢幕左方的位置
+      // resizable=yes：允許使用者調整視窗大小
+      // scrollbars=yes：內容超出時允許出現捲軸
       `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes`,
     );
   };
@@ -162,35 +200,48 @@ const Join = () => {
    * 表單送出
    * data 由 react-hook-form 提供
    */
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     try {
       setIsSubmitting(true);
 
-      const payload = {
-        name: data.name.trim(),
-        email: data.email.trim(),
-        password: data.password,
-        phone: data.phone.trim(),
-        address: data.address.trim(),
-      };
+      // 把欄位整理成乾淨資料（trim：拿掉多餘空白）
+      const email = formData.email.trim();
+      const password = formData.password;
+      const name = formData.name.trim();
+      const tel = formData.phone.trim();
+      const address = formData.address.trim();
 
-      await registerUser(payload);
+      // 使用 supabase 註冊會員
+      const { data, error } = await supabase.auth.signUp({
+        // 會員資料，先存成物件再放入
+        email: email,
+        password: password,
+        options: {
+          data: {
+            name: name,
+            tel: tel,
+            address: address,
+          },
+        },
+      });
+
+      if (error) {
+        throw error; // 手動把錯誤丟給 catch
+      }
+
+      console.log("註冊成功！資料如下：", data);
 
       reset();
       setShowSuccess(true);
     } catch (error) {
       console.error("註冊失敗：", error);
 
-      const errorMessage =
-        error.response?.data?.message ||
-        error.response?.data ||
-        "註冊失敗，請稍後再試";
-
-      alert(
-        typeof errorMessage === "string"
-          ? errorMessage
-          : "註冊失敗，請稍後再試",
-      );
+      // 簡單版錯誤提示
+      if (error.message?.includes("User already registered")) {
+        alert("這個信箱已經註冊過了");
+      } else {
+        alert(error.message || "註冊失敗，請稍後再試");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -219,7 +270,7 @@ const Join = () => {
             <aside className="col-lg-4 pe-5 d-none d-lg-block">
               <div className="h-100">
                 {/* 
-                這裡就是在 Join 內增加 CommonSwiper
+                在 Join 內增加 CommonSwiper
                 但 CommonSwiper 本身是共用元件，
                 所以其他頁也可以直接 import 使用
               */}
@@ -282,7 +333,7 @@ const Join = () => {
                         </label>
                       </div>
 
-                      {/* 錯誤訊息（可選） */}
+                      {/* 錯誤訊息 */}
                       {touchedFields.name && errors.name && (
                         <p className="text-danger fs-7 ps-2 mt-2 mb-0">
                           {errors.name.message}
@@ -319,7 +370,7 @@ const Join = () => {
                         </label>
                       </div>
 
-                      {/* 錯誤訊息（可選） */}
+                      {/* 錯誤訊息 */}
                       {touchedFields.phone && errors.phone && (
                         <p className="text-danger fs-7 ps-2 mt-2 mb-0">
                           {errors.phone.message}
@@ -398,7 +449,7 @@ const Join = () => {
                       </span>
                     </div>
 
-                    {/* 錯誤訊息（可選） */}
+                    {/* 錯誤訊息 */}
                     {touchedFields.password && errors.password && (
                       <p className="text-danger fs-7 ps-2 mt-2 mb-0">
                         {errors.password.message}
@@ -507,28 +558,36 @@ const Join = () => {
                     <p className="text-neutral-100 fs-7 mb-10">
                       建立帳號即表示您同意我們的
                       <a
-                        href="../../pages/return.html"
+                        href="#/return"
                         className="fs-lg-9 fs-7 link"
                         id="returnLink"
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => {
+                          // 開一個置中的新視窗，並導到 #/return
+                          // 這裡傳 "/return" 就好
+                          // 因為 function 裡會自動幫你組成完整網址：
+                          // http://localhost:5173/#/return
                           e.preventDefault();
-                          openCenteredWindow("./return.html");
+                          openCenteredWindow("/return");
                         }}
                       >
                         退換貨政策
                       </a>
                       及
                       <a
-                        href="../../pages/privacy.html"
+                        href="#/privacy"
                         className="fs-lg-9 fs-7 link"
                         id="privacyLink"
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => {
+                          // 開一個置中的新視窗，並導到 #/return
+                          // 這裡傳 "/return" 就好
+                          // 因為 function 裡會自動幫你組成完整網址：
+                          // http://localhost:5173/#/return
                           e.preventDefault();
-                          openCenteredWindow("./privacy.html");
+                          openCenteredWindow("/privacy");
                         }}
                       >
                         隱私權政策

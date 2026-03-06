@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { supabase } from "../../supabaseClient";
 
 import logo from "@/assets/images/logo.webp";
 import cornerS from "@/assets/images/corner-s.webp";
@@ -11,22 +12,162 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const loginStatus = localStorage.getItem("isLogin") === "true";
-    const userData = JSON.parse(localStorage.getItem("user") || "null");
+  /**
+   * 取得目前登入狀態
+   * 這裡改用 Supabase session 來判斷
+   */
+  const checkLoginStatus = async () => {
+    try {
+      const { data, error } = await supabase.auth.getSession();
 
-    setIsLogin(loginStatus);
-    setUser(userData);
+      if (error) {
+        throw error;
+      }
+
+      const session = data.session;
+
+      if (session && session.user) {
+        setIsLogin(true);
+
+        // 從 user metadata 取出 name
+        const userData = {
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.name || "會員",
+          tel: session.user.user_metadata?.tel || "",
+          address: session.user.user_metadata?.address || "",
+        };
+
+        setUser(userData);
+
+        // 若其他頁面還有在用 localStorage，這裡一起同步
+        localStorage.setItem("isLogin", "true");
+        localStorage.setItem("user", JSON.stringify(userData));
+      } else {
+        setIsLogin(false);
+        setUser(null);
+
+        localStorage.removeItem("isLogin");
+        localStorage.removeItem("user");
+      }
+    } catch (error) {
+      console.error("取得登入狀態失敗：", error.message);
+      setIsLogin(false);
+      setUser(null);
+    }
+  };
+
+  /**
+   * 進頁面或換頁時，重新確認登入狀態
+   */
+  useEffect(() => {
+    checkLoginStatus();
   }, [location]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLogin");
-    localStorage.removeItem("user");
-    localStorage.removeItem("rememberEmail");
+  /**
+   * 監聽 Supabase 登入 / 登出狀態變化
+   * 這樣一登入或一登出，Header 畫面會立刻更新
+   */
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session && session.user) {
+        const userData = {
+          id: session.user.id,
+          email: session.user.email,
+          name: session.user.user_metadata?.name || "會員",
+          tel: session.user.user_metadata?.tel || "",
+          address: session.user.user_metadata?.address || "",
+        };
 
-    setIsLogin(false);
-    setUser(null);
+        setIsLogin(true);
+        setUser(userData);
+
+        localStorage.setItem("isLogin", "true");
+        localStorage.setItem("user", JSON.stringify(userData));
+      } else {
+        setIsLogin(false);
+        setUser(null);
+
+        localStorage.removeItem("isLogin");
+        localStorage.removeItem("user");
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  /**
+   * 手機版 modal 關閉後跳轉登入頁
+   * 因為在 modal 裡直接用 Link + data-bs-dismiss，有時會吃掉跳頁
+   */
+  const goToLoginFromMobileMenu = () => {
+    const modalElement = document.getElementById("modal-menu");
+
+    if (modalElement) {
+      modalElement.classList.remove("show");
+      modalElement.setAttribute("aria-hidden", "true");
+      modalElement.style.display = "none";
+    }
+
+    const backdrops = document.querySelectorAll(".modal-backdrop");
+    backdrops.forEach((backdrop) => backdrop.remove());
+
+    document.body.classList.remove("modal-open");
+    document.body.style.removeProperty("padding-right");
+    document.body.style.removeProperty("overflow");
+
     navigate("/login");
+  };
+
+  /**
+   * 登出
+   * 改成真的使用 Supabase 登出
+   */
+  const handleLogout = async () => {
+    try {
+      // 修正：解構賦值直接拿到 error，因為 auth.signOut 不支援 .throwOnError()
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        throw error; // 手動把錯誤丟給 catch 處理
+      }
+
+      // 清掉前端本地登入資料
+      localStorage.removeItem("isLogin");
+      localStorage.removeItem("user");
+      localStorage.removeItem("rememberEmail");
+
+      // 畫面狀態立即改變
+      setIsLogin(false);
+      setUser(null);
+
+      // 如果目前是手機 modal 開著，順手關掉
+      const modalElement = document.getElementById("modal-menu");
+      if (modalElement) {
+        modalElement.classList.remove("show");
+        modalElement.setAttribute("aria-hidden", "true");
+        modalElement.style.display = "none";
+      }
+
+      const backdrops = document.querySelectorAll(".modal-backdrop");
+      backdrops.forEach((backdrop) => backdrop.remove());
+
+      document.body.classList.remove("modal-open");
+      document.body.style.removeProperty("padding-right");
+      document.body.style.removeProperty("overflow");
+
+      // 這裡寫登出成功的執行程式碼
+      console.log("已成功登出");
+
+      navigate("/login");
+    } catch (error) {
+      console.error("登出時發生錯誤：", error.message);
+      alert(error.message || "登出失敗，請稍後再試");
+    }
   };
 
   return (
@@ -323,14 +464,13 @@ const Header = () => {
 
             <div className="modal-footer border-0 d-flex justify-content-center mt-3 mb-6">
               {!isLogin ? (
-                <Link
-                  to="/login"
+                <button
                   type="button"
-                  className="btn headerLogin btn-outline-primary-80 br-4 fs-6 text-primary-80 px-8 py-4"
-                  data-bs-dismiss="modal"
+                  className="btn headerLogin btn-outline-primary-80 br-4 fs-6 px-8 py-4"
+                  onClick={goToLoginFromMobileMenu}
                 >
                   登入／註冊
-                </Link>
+                </button>
               ) : (
                 <div className="d-flex flex-column align-items-center w-100">
                   <p className="mb-4 text-neutral-100">
@@ -338,8 +478,7 @@ const Header = () => {
                   </p>
                   <button
                     type="button"
-                    className="btn headerLogin btn-outline-primary-80 br-4 fs-6 px-8 py-4 "
-                    data-bs-dismiss="modal"
+                    className="btn headerLogin btn-outline-primary-80 br-4 fs-6 px-8 py-4"
                     onClick={handleLogout}
                   >
                     登出
