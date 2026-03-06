@@ -10,6 +10,9 @@ import Privacy from "./views/Privacy";
 import ProductListClassic from "./views/ProductListClassic";
 import ProductListGiftbox from "./views/ProductListGiftbox";
 import ProductListSeasonal from "./views/ProductListSeasonal";
+import MyFavorite from "./views/MyFavorite";
+import MyInfo from "./views/MyInfo";
+import MyOrders from "./views/MyOrders";
 
 const router = createHashRouter([
   {
@@ -56,6 +59,18 @@ const router = createHashRouter([
         path: "productList-seasonal",
         element: <ProductListSeasonal />,
       },
+      {
+        path: "myFavorite",
+        element: <MyFavorite />,
+      },      
+      {
+        path: "myInfo",
+        element: <MyInfo />,
+      },      
+      {
+        path: "myOrders",
+        element: <MyOrders />,
+      },           
     ],
   },
   {
