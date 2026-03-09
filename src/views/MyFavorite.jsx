@@ -22,7 +22,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        alert("請先登入才能收藏商品喔！");
+        navigate('/login', { replace: true });
         return;
       }
 
@@ -52,7 +52,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        alert("請先登入才能收藏商品喔！");
+        navigate('/login', { replace: true });
         return;
       }
 
@@ -80,7 +80,7 @@ function MyFavorite() {
 
       // 這裡可以寫程式碼 (如跳轉到登入頁面、警告未登入)
       if (!user) {
-        alert("請先登入新增至購物車喔！");
+        navigate('/login', { replace: true });
         return;
       }
 
